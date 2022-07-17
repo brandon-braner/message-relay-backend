@@ -32,18 +32,16 @@ jobs:
       id-token: 'write'
 
     steps:
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v0'
+      - uses: actions/checkout@v2
+      - uses: 'google-github-actions/auth@v0'
         with:
-          workload_identity_provider: ${{ secrets.DEV_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: 'message-relay-backend-dev@message-relay-dev.iam.gserviceaccount.com'
-
+          credentials_json: ${{ secrets.DEV_GCLOUD_SERVICE_KEY }}
 
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloudrun@v0'
         with:
           service: 'message-relay-backend'
-          image: 'gcr.io/message-relay-dev/message-relay'
+          image: 'gcr.io/message-relay-dev/message-relay:latest'
 
       - name: 'Use output'
         run: 'curl "${{ steps.deploy.outputs.url }}"'
