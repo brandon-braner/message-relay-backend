@@ -18,14 +18,16 @@ jobs:
           python-version: ~3.10.5
       - uses: pre-commit/action@v3.0.0
 
-  push-to-gcr:
+  build-and-push-to-gcr:
     runs-on: ubuntu-latest
     steps:
-      - uses: raccoondev/push-docker-gcr
+      - uses: actions/checkout@v2
+      - uses: RafikFarhad/push-to-gcr-github-action@v4.1
         with:
-          gcr_host: gcr.io
+          gcloud_service_key: ${{ secrets.DEV_GCLOUD_SERVICE_KEY }} # can be base64 encoded or plain text
+          registry: gcr.io
+          project_id: message-relay-dev
           image_name: message-relay
           image_tag: latest
-          env:
-            GCLOUD_SERVICE_KEY: ${{ secrets.DEV_GCLOUD_SERVICE_KEY }}
-            GOOGLE_PROJECT_ID: ${{ secrets.DEV_GOOGLE_PROJECT_ID }}
+          dockerfile: Dockerfile
+          context: .
