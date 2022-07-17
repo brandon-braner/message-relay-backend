@@ -33,9 +33,22 @@ resource "google_project_iam_member" "sa_cr_admin" {
   member = "serviceAccount:${google_service_account.sa.email}"
 }
 
-
+# Storage Buckets
 resource "google_storage_bucket_iam_binding" "sa_storage_admin" {
   bucket = google_storage_bucket.tf-state.name
+  role = "roles/storage.admin"
+  members = ["serviceAccount:${google_service_account.sa.email}"]
+}
+
+# buckets for gcr
+resource "google_storage_bucket_iam_binding" "sa_storage_gcr" {
+  bucket = "artifacts.message-relay-dev.appspot.com"
+  role = "roles/storage.admin"
+  members = ["serviceAccount:${google_service_account.sa.email}"]
+}
+
+resource "google_storage_bucket_iam_binding" "sa_storage_gcr_us" {
+  bucket = "us.artifacts.message-relay-dev.appspot.com"
   role = "roles/storage.admin"
   members = ["serviceAccount:${google_service_account.sa.email}"]
 }
