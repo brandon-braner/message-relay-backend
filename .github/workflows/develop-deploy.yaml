@@ -36,7 +36,8 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           workload_identity_provider: ${{ secrets.DEV_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.DEV_SERVICE_ACCOUNT }}
+          service_account: 'message-relay-backend-dev@message-relay-dev.iam.gserviceaccount.com'
+
 
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloudrun@v0'
