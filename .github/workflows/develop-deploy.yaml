@@ -36,6 +36,7 @@ jobs:
       - uses: 'google-github-actions/auth@v0'
         with:
           credentials_json: ${{ secrets.DEV_GCLOUD_SERVICE_KEY }}
+          service_account:
 
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloudrun@v0'

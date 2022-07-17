@@ -10,8 +10,14 @@ resource "google_project_iam_binding" "sa_token_creator" {
   members = ["serviceAccount:${google_service_account.sa.email}"]
 }
 
+resource "google_project_iam_binding" "sa_service_account_user" {
+  project = local.env[terraform.workspace].project
+  role    = "roles/iam.serviceAccountUser"
+  members = ["serviceAccount:${google_service_account.sa.email}"]
+}
+
 # Cloud Run
-resource "google_cloud_run_service_iam_binding" "sa_cr_invoke" {
+resource "google_cloud_run_service_iam_binding" "sa_cr_admin" {
   location = google_cloud_run_service.backend_cloud_run.location
   project  = google_cloud_run_service.backend_cloud_run.project
   service  = google_cloud_run_service.backend_cloud_run.name
