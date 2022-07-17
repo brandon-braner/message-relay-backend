@@ -24,12 +24,8 @@ resource "google_iam_workload_identity_pool_provider" "gh_identity_pool_provider
 data "google_iam_policy" "gh_policy" {
   binding {
     role = "roles/iam.workloadIdentityUser"
-<<<<<<< Updated upstream
-    members  = ["serviceAccount:${google_service_account.sa.email}"]
-=======
     members = [
       "principalSet://iam.googleapis.com/projects/512259185078/locations/global/workloadIdentityPools/github-pool/attribute.full/message-relay-dev+develop",
     ]
->>>>>>> Stashed changes
   }
 }
