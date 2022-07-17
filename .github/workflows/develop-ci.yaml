@@ -1,8 +1,8 @@
-name: PR to develop or main
+name: PR to develop
 
 on:
   pull_request:
-    branches: [main, develop]
+    branches: [develop]
 
 env:
   IMAGE_REGISTRY: us.scr.io
@@ -26,5 +26,5 @@ jobs:
         image_name: message-relay
         image_tag: latest
         env:
-          GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
-          GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
+          GCLOUD_SERVICE_KEY: ${{ secrets.DEV_GCLOUD_SERVICE_KEY }}
+          GOOGLE_PROJECT_ID: ${{ secrets.DEV_GOOGLE_PROJECT_ID }}
