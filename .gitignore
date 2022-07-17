@@ -1,3 +1,5 @@
+# Editor Files
+.idea/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +129,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+terraform/.terraform
+terraform/.terraform.lock.hcl
