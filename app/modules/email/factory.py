@@ -2,7 +2,7 @@ from app.integrations.email import Mailgun
 from app.integrations.email import Sendgrid
 
 # Create a message based on the type of message
-class MessageFactory():
+class EmailFactory():
 
     def create_instance():
         pass
