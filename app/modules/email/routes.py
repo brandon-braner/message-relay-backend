@@ -1,9 +1,11 @@
 from fastapi import APIRouter
+from app.modules.email.factory import EmailFactory
 
 router = APIRouter(prefix="/email")
 
 
 @router.post("/send")
-async def send(integration: str):
+async def send(integration_name: str):
     # Send email
-    pass
+    factory = EmailFactory
+    factory.create_instance(integration_name)
