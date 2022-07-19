@@ -11,13 +11,4 @@ class EmailFactory():
 
         instance = None
 
-        match integration_name:
-            case 'sendgrid':
-                instance = Sendgrid
-            case 'mailgun':
-                instance = Mailgun
-            case _:
-                # Throw some sort of error
-                pass
-                
-        return instance
+        return None
