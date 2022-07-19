@@ -1,5 +1,4 @@
-from app.integrations.email import Mailgun
-from app.integrations.email import Sendgrid
+from app.integrations.email import EmailIntegrationsEnum
 
 # Create a message based on the type of message
 class EmailFactory():
